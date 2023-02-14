@@ -12,6 +12,7 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import {LoginModule} from "./eticaret/login/login.module";
+import {HomepageModule} from "./eticaret/homepage/homepage.module";
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {LoginModule} from "./eticaret/login/login.module";
     imports: [
         AppRoutingModule,
         AppLayoutModule,
-        LoginModule
+        LoginModule,
+        HomepageModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

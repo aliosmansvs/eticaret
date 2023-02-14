@@ -11,6 +11,7 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 children: [
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'login', loadChildren: () => import('./eticaret/login/login.module').then(m => m.LoginModule) },
+                    { path: 'homepage', loadChildren: () => import('./eticaret/homepage/homepage.module').then(m => m.HomepageModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
