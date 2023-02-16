@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomepageComponent} from './homepage.component';
+import { DashboardComponent} from './dashboard.component';
 import {CommonModule} from "@angular/common";
-import {HomepageRoutingModule} from "./homepage-routing.module";
+import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {ChipsModule} from "primeng/chips";
@@ -12,20 +12,23 @@ import {DropdownModule} from "primeng/dropdown";
 import {FileUploadModule} from "primeng/fileupload";
 import {SliderModule} from "primeng/slider";
 import {DividerModule} from "primeng/divider";
+import {TabMenuModule} from "primeng/tabmenu";
+import {CardModule} from "primeng/card";
+import {PaginatorModule} from "primeng/paginator";
+import {RatingModule} from "primeng/rating";
 import {ToastModule} from "primeng/toast";
 import {ToolbarModule} from "primeng/toolbar";
 import {RippleModule} from "primeng/ripple";
-import {InputTextareaModule} from "primeng/inputtextarea";
-import {RadioButtonModule} from "primeng/radiobutton";
-import {PaginatorModule} from "primeng/paginator";
-import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
-    declarations:[HomepageComponent],
+    declarations:[DashboardComponent],
     imports: [
         CommonModule,
-        HomepageRoutingModule,
+        DashboardRoutingModule,
         FormsModule,
         ButtonModule,
         ChipsModule,
@@ -35,14 +38,17 @@ import {DialogModule} from "primeng/dialog";
         FileUploadModule,
         SliderModule,
         DividerModule,
+        TabMenuModule,
+        CardModule,
+        PaginatorModule,
+        RatingModule,
         ToastModule,
         ToolbarModule,
         RippleModule,
-        InputTextareaModule,
-        RadioButtonModule,
-        PaginatorModule,
-        ConfirmDialogModule,
         DialogModule,
+        RadioButtonModule,
+        InputTextareaModule,
+        ConfirmDialogModule,
     ]
 })
-export class HomepageModule { }
+export class DashboardModule { }

@@ -4,19 +4,27 @@ import {
     SimpleChanges
 } from '@angular/core';
 
-import {ConfirmationService, MessageService} from "primeng/api";
+import {ConfirmationService, MenuItem, MessageService} from "primeng/api";
 import {Product} from "../model/product";
 import {ProductService} from "../service/product.service";
 
 
+
 @Component({
-    selector: 'app-login',
-    templateUrl: './homepage.component.html',
-    providers: [MessageService]
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styles: [`
+        :host ::ng-deep .p-dialog .product-image {
+            width: 150px;
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+    `],
+    providers: [MessageService,ConfirmationService]
 
 })
 
-export class HomepageComponent implements OnInit{
+export class DashboardComponent implements OnInit{
     productDialog!: boolean;
 
     products!: Product[];
@@ -28,7 +36,6 @@ export class HomepageComponent implements OnInit{
     submitted!: boolean;
 
     statuses!: [{ label: string; value: string }, { label: string; value: string }, { label: string; value: string }];
-    disabled!: boolean;
 
     constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
@@ -63,7 +70,7 @@ export class HomepageComponent implements OnInit{
         });
     }
 
-    addProduct(product: Product) {
+    editProduct(product: Product) {
         this.product = {...product};
         this.productDialog = true;
     }
@@ -84,7 +91,6 @@ export class HomepageComponent implements OnInit{
     hideDialog() {
         this.productDialog = false;
         this.submitted = false;
-        this.disabled=false;
     }
 
     saveProduct() {

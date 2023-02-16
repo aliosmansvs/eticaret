@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DasboardComponent} from './dasboard.component';
+import { ShoppageComponent} from './shoppage.component';
 import {CommonModule} from "@angular/common";
-import {DasboardRoutingModule} from "./dasboard-routing.module";
+import {ShoppageRoutingModule} from "./shoppage-routing.module";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {ChipsModule} from "primeng/chips";
@@ -12,12 +12,20 @@ import {DropdownModule} from "primeng/dropdown";
 import {FileUploadModule} from "primeng/fileupload";
 import {SliderModule} from "primeng/slider";
 import {DividerModule} from "primeng/divider";
+import {ToastModule} from "primeng/toast";
+import {ToolbarModule} from "primeng/toolbar";
+import {RippleModule} from "primeng/ripple";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {PaginatorModule} from "primeng/paginator";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
-    declarations:[DasboardComponent],
+    declarations:[ShoppageComponent],
     imports: [
         CommonModule,
-        DasboardRoutingModule,
+        ShoppageRoutingModule,
         FormsModule,
         ButtonModule,
         ChipsModule,
@@ -27,6 +35,14 @@ import {DividerModule} from "primeng/divider";
         FileUploadModule,
         SliderModule,
         DividerModule,
+        ToastModule,
+        ToolbarModule,
+        RippleModule,
+        InputTextareaModule,
+        RadioButtonModule,
+        PaginatorModule,
+        ConfirmDialogModule,
+        DialogModule,
     ]
 })
-export class DasboardModule { }
+export class ShoppageModule { }

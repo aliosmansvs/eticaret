@@ -11,12 +11,12 @@ import {ProductService} from "../service/product.service";
 
 @Component({
     selector: 'app-login',
-    templateUrl: './homepage.component.html',
+    templateUrl: './shoppage.component.html',
     providers: [MessageService]
 
 })
 
-export class HomepageComponent implements OnInit{
+export class ShoppageComponent implements OnInit{
     productDialog!: boolean;
 
     products!: Product[];
@@ -48,20 +48,7 @@ export class HomepageComponent implements OnInit{
         this.productDialog = true;
     }
 
-    deleteSelectedProducts() {
-        this.confirmationService.confirm({
-            message: 'Are you sure you want to delete the selected products?',
-            header: 'Confirm',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {
-                this.products = this.products.filter(val => {
-                    return !this.selectedProducts.includes(val);
-                });
-                this.selectedProducts = {} as Product[];
-                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
-            }
-        });
-    }
+
 
     addProduct(product: Product) {
         this.product = {...product};
@@ -70,7 +57,7 @@ export class HomepageComponent implements OnInit{
 
     deleteProduct(product: Product) {
         this.confirmationService.confirm({
-            message: 'Are you sure you want to delete ' + product.name + '?',
+            message: 'Silmek istediğinize emin misiniz ' + product.name + '?',
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
@@ -84,7 +71,6 @@ export class HomepageComponent implements OnInit{
     hideDialog() {
         this.productDialog = false;
         this.submitted = false;
-        this.disabled=false;
     }
 
     saveProduct() {
