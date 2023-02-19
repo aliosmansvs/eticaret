@@ -27,8 +27,6 @@ export class LoginComponent {
     }
 
     login() {
-        console.log('asdas')
-
 
         if(localStorage.getItem("admin")==this.userName && localStorage.getItem("adminPassword")==this.password){
             this.router.navigate(["dashboard"]);

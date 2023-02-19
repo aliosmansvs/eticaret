@@ -1,5 +1,5 @@
 import {
-    Component, OnChanges,
+    Component, DoCheck, OnChanges,
     OnInit, Output,
     SimpleChanges
 } from '@angular/core';
@@ -24,7 +24,7 @@ import {ProductService} from "../service/product.service";
 
 })
 
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
     productDialog!: boolean;
 
     products!: Product[];
@@ -37,7 +37,9 @@ export class DashboardComponent implements OnInit{
 
     statuses!: [{ label: string; value: string }, { label: string; value: string }, { label: string; value: string }];
 
-    constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
+    constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+
+    }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -49,7 +51,7 @@ export class DashboardComponent implements OnInit{
         ];
     }
 
-    openNew() {
+    addNew() {
         this.product = {} as Product;
         this.submitted = false;
         this.productDialog = true;
@@ -134,7 +136,15 @@ export class DashboardComponent implements OnInit{
         return id;
     }
 
+    // ngDoCheck(): void {
+    //     // @ts-ignore
+    //     this.products=JSON.parse(localStorage.getItem('product'));
+    //     console.log(this.products)
+    // }
+
 }
+
+
 
 
 

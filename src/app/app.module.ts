@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {AsyncPipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -17,6 +17,11 @@ import {ProductService} from "./eticaret/service/product.service";
 import {ConfirmationService} from "primeng/api";
 import {ShoppageModule} from "./eticaret/shop/shoppage.module";
 
+import {StoreModule} from "@ngrx/store";
+import {shopReducer} from "./eticaret/store/shop/shop.reducers";
+import {AuthGuard} from "./eticaret/shared/auth.guard";
+import {RoleGuard} from "./eticaret/shared/role.guard";
+import {SHOP_REDUCER} from "./eticaret/model/shop";
 
 
 
@@ -30,13 +35,16 @@ import {ShoppageModule} from "./eticaret/shop/shoppage.module";
         LoginModule,
         HomepageModule,
         DashboardModule,
-        ShoppageModule
+        ShoppageModule,
+        StoreModule.forRoot({[SHOP_REDUCER]:shopReducer}),
+
+        AsyncPipe
 
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,ConfirmationService
+        PhotoService, ProductService,ConfirmationService,AuthGuard,RoleGuard
     ],
     bootstrap: [AppComponent]
 })

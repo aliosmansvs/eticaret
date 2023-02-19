@@ -3,16 +3,21 @@
 <div class="card">
 
 
-    <p-table #dt [value]="products" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" [tableStyle]="{'min-width': '75rem'}"
+    <p-table #dt [value]="products" [rows]="10" [paginator]="true"
+             [globalFilterFields]="['name','country.name','representative.name','status']"
+             [tableStyle]="{'min-width': '75rem'}"
              [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
-             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 <h5 class="m-0">User Product Page</h5>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search" ></i>
-                    <input pInputText type="text"  placeholder="Search..." />
-                </span>
+                <div class="align-items-center" style="float: right ">
+
+                    <button pButton class="mr-4" icon="pi pi-fw pi-shopping-cart" (click)="routerShopping()"><label
+                        class="ml-3">{{amountCount | async}}  </label></button>
+                </div>
+
             </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -22,12 +27,22 @@
 
                 </th>
 
-                <th pSortableColumn="name" style="min-width:15rem">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="name" style="min-width:15rem">Name
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
                 <th>Image</th>
-                <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                <th pSortableColumn="category" style="min-width:10rem">Category <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="Description" style="min-width:10rem">Description <p-sortIcon field="Description"></p-sortIcon></th>
-                <th pSortableColumn="inventoryStatus" style="min-width:10rem">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
+                <th pSortableColumn="price">Price
+                    <p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="category" style="min-width:10rem">Category
+                    <p-sortIcon field="category"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Description" style="min-width:10rem">Description
+                    <p-sortIcon field="Description"></p-sortIcon>
+                </th>
+                <th pSortableColumn="inventoryStatus" style="min-width:10rem">Status
+                    <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                </th>
                 <th></th>
             </tr>
         </ng-template>
@@ -37,13 +52,16 @@
 
                 </td>
                 <td>{{product.name}}</td>
-                <td><img [src]="product.image"width="100" class="shadow-4" /></td>
+                <td><img [src]="product.image" width="100" class="shadow-4"/></td>
                 <td>{{product.price | currency:'TR'}}</td>
                 <td>{{product.category}}</td>
                 <td>{{product.description}}</td>
-                <td><span [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span></td>
+                <td><span
+                    [class]="'product-badge status-' + (product.inventoryStatus ? product.inventoryStatus.toLowerCase() : '')">{{product.inventoryStatus}}</span>
+                </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-success mr-2" (click)="addProduct(product)"></button>
+                    <button pButton pRipple icon="pi pi-shopping-cart" class="p-button-rounded p-button-success mr-2"
+                            (click)="addProduct(product)"></button>
                 </td>
             </tr>
         </ng-template>
@@ -55,38 +73,47 @@
     </p-table>
 </div>
 
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+          styleClass="p-fluid">
     <ng-template pTemplate="content">
         <img [src]="product.image" class="product-image" width="100%" *ngIf="product.image">
         <div class="field">
             <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="product.name" [readOnly]="true" required autofocus />
+            <input type="text" pInputText id="name" [(ngModel)]="product.name" [readOnly]="true" required autofocus/>
             <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
         </div>
         <div class="field">
             <label for="description">Description</label>
-            <textarea id="description" pInputTextarea [(ngModel)]="product.description" [readOnly]="true" required rows="3" cols="20"></textarea>
+            <textarea id="description" pInputTextarea [(ngModel)]="product.description" [readOnly]="true" required
+                      rows="3" cols="20"></textarea>
         </div>
         <div class="field ">
             <label for="price">Price</label>
-            <p-inputNumber id="price" [(ngModel)]="product.price" [readonly]="true" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+            <p-inputNumber id="price" [(ngModel)]="product.price" [readonly]="true" mode="currency" currency="USD"
+                           locale="en-US"></p-inputNumber>
         </div>
 
-
+        <h1>{{test}}</h1>
         <div class="formgrid grid">
-            <div class="field col" >
+            <div class="field col">
                 <label for="amount">Amount</label>
-                <div style="width: 10%" >
-                <p-inputNumber id="amount" [(ngModel)]="product.amount" mode="decimal" [showButtons]="true" buttonLayout="vertical" spinnerMode="vertical"
-                               decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                <div style="width: 10%">
+                    <p-inputNumber id="amount" [(ngModel)]="productAmount" mode="decimal" [showButtons]="true"
+                                   buttonLayout="vertical" spinnerMode="vertical"
+                                   decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
+                                   incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
                 </div>
             </div>
         </div>
+
+
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="" icon="pi pi-shopping-cart" class="p-button-text" (click)="saveProduct()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Add" icon="pi pi-shopping-cart" class="p-button-text"
+                (click)="shopLocalStorage()"></button>
+
     </ng-template>
 </p-dialog>
 

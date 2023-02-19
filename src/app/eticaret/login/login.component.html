@@ -1,18 +1,42 @@
-<div class="col-5 justify-content-center">
-    <div class="card ">
-        <h5>Login Page</h5>
-        <div class="grid">
-            <div class="col-5 flex align-items-center justify-content-center">
-                <div class="p-fluid">
-                    <div class=" field" >
-                        <label for="username">Username</label>
-                        <input pInputText id="username" type="text" [(ngModel)]="userName"/>
+<!--<div class="col-5 justify-content-center">-->
+<!--    <div class="card ">-->
+<!--        <h5>Login Page</h5>-->
+<!--        <div class="grid">-->
+<!--            <div class="col-5 flex align-items-center justify-content-center">-->
+<!--                <div class="p-fluid">-->
+<!--                    <div class=" field" >-->
+<!--                        <label for="username">Username</label>-->
+<!--                        <input pInputText id="username" type="text" [(ngModel)]="userName"/>-->
+<!--                    </div>-->
+<!--                    <div class="field">-->
+<!--                        <label for="password">Password</label>-->
+<!--                        <input pInputText id="password" type="password" [(ngModel)]="password"/>-->
+<!--                    </div>-->
+<!--                    <p-button label="Login" (click)="login()"></p-button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div   class="flex align-items-center justify-content-center min-h-screen min-w-screen " >
+    <div class="card  " >
+        <h5 class=" card-title">Sing In</h5>
+        <div class=" flex card-container flex-wrap">
+
+            <div class="grid">
+                <div class="col-10">
+                    <div class="p-fluid">
+                        <div class="field">
+                            <label for="username">Username</label>
+                            <input pInputText [(ngModel)]="userName" id="username" type="text" />
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <input pInputText [(ngModel)]="password" id="password" type="password" />
+                        </div>
+                        <p-button (click)="login()"   label="Login"></p-button>
                     </div>
-                    <div class="field">
-                        <label for="password">Password</label>
-                        <input pInputText id="password" type="password" [(ngModel)]="password"/>
-                    </div>
-                    <p-button label="Login" (click)="login()"></p-button>
                 </div>
             </div>
         </div>

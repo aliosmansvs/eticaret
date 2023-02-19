@@ -18,7 +18,8 @@
             "price": 65,
             "category": "Accessories",
             "quantity": 24,
-            "inventoryStatus": "INSTOCK"
+            "inventoryStatus": "INSTOCK",
+            "amount": 1
         },
         {
             "id": "3",
@@ -28,7 +29,8 @@
             "price": 65,
             "category": "Accessories",
             "quantity": 24,
-            "inventoryStatus": "INSTOCK"
+            "inventoryStatus": "INSTOCK",
+            "amount":1
 
         },
         {
@@ -39,7 +41,8 @@
             "price": 65,
             "category": "Accessories",
             "quantity": 24,
-            "inventoryStatus": "INSTOCK"
+            "inventoryStatus": "INSTOCK",
+            "amount": 1
 
         }
         ]
