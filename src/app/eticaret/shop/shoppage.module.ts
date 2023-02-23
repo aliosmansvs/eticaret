@@ -20,6 +20,7 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {PaginatorModule} from "primeng/paginator";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
     declarations:[ShoppageComponent],
@@ -43,6 +44,7 @@ import {DialogModule} from "primeng/dialog";
         PaginatorModule,
         ConfirmDialogModule,
         DialogModule,
+        CheckboxModule,
     ]
 })
 export class ShoppageModule { }

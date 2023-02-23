@@ -13,9 +13,10 @@ import {createReducer, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import { selectCurrentShop} from "../store/shop/shop.selectors";
 import {shopDecrement, shopIncrement} from "../store/shop/shop.action";
+import {BasketService} from "../service/basket.service";
 
 
-// @ts-ignore
+
 @Component({
     selector: 'app-login',
     templateUrl: './homepage.component.html',
@@ -28,11 +29,11 @@ export class HomepageComponent implements OnInit {
 
     products!: Product[];
 
+
     shopProducts: Product[] = [];
 
     product!: Product;
     test!:number;
-
 
     selectedProducts!: Product[];
 
@@ -46,16 +47,13 @@ export class HomepageComponent implements OnInit {
 
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private router: Router,
-                private store: Store)
+                private store: Store,private basketServis:BasketService)
     {
+        this.productService.GetAll().subscribe(value => this.products=value);
+
+
     }
-
-
     ngOnInit() {
-
-
-        this.productService.getProducts().then(data => this.products = data);
-
         this.statuses = [
             {label: 'INSTOCK', value: 'instock'},
             {label: 'LOWSTOCK', value: 'lowstock'},
@@ -66,20 +64,14 @@ export class HomepageComponent implements OnInit {
         this.amountCount.subscribe(value => this.test=value);
 
     }
-
-
     addProduct(product: Product) {
         this.product = {...product};
         this.productDialog = true;
     }
-
     routerShopping() {
         this.router.navigate(["shoppage"]);
 
-
     }
-
-
 
     hideDialog() {
         this.productDialog = false;
@@ -87,7 +79,9 @@ export class HomepageComponent implements OnInit {
         this.disabled = false;
     }
 
-    shopLocalStorage() {
+    shopLocalStorage(product:Product) {
+        console.log("1",product)
+        this.basketServis.saveProduct(product);
 
 
         this.submitted = true;

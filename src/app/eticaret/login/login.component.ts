@@ -6,6 +6,7 @@ import {
 
 import {MessageService} from "primeng/api";
 import {Router} from "@angular/router";
+import {LoginService} from "../service/login.service";
 
 
 @Component({
@@ -18,23 +19,15 @@ import {Router} from "@angular/router";
 export class LoginComponent {
     userName!:string
     password!:string
-    constructor(private router:Router) {
-        localStorage.setItem("user","user");
-        localStorage.setItem("userPassword","12345");
+    constructor(private router:Router,private loginService:LoginService) {
 
-        localStorage.setItem("admin","admin");
-        localStorage.setItem("adminPassword","12345");
     }
 
     login() {
 
-        if(localStorage.getItem("admin")==this.userName && localStorage.getItem("adminPassword")==this.password){
-            this.router.navigate(["dashboard"]);
-        }else if(localStorage.getItem("user")==this.userName && localStorage.getItem("userPassword")==this.password){
-            this.router.navigate(["homepage"]);
-        }else {
-            alert("Worg user name or Password");
-        }
+        this.loginService.findUser(this.userName,this.password).subscribe(data=>console.log(data));
+
+
 
 
 

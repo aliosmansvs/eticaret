@@ -27,7 +27,7 @@ import {ProductService} from "../service/product.service";
 export class DashboardComponent implements OnInit {
     productDialog!: boolean;
 
-    products!: Product[];
+    products: Product[]=[];
 
     product!: Product;
 
@@ -39,10 +39,13 @@ export class DashboardComponent implements OnInit {
 
     constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
+        this.productService.GetAll().subscribe(value => this.products=value);
+        console.log(this.products);
     }
 
     ngOnInit() {
-        this.productService.getProducts().then(data => this.products = data);
+
+
 
         this.statuses = [
             {label: 'INSTOCK', value: 'instock'},
@@ -51,18 +54,24 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
+
+
     addNew() {
         this.product = {} as Product;
         this.submitted = false;
         this.productDialog = true;
     }
 
-    deleteSelectedProducts() {
+    deleteSelectedProducts(product:Product) {
+
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete the selected products?',
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
+
+
+
                 this.products = this.products.filter(val => {
                     return !this.selectedProducts.includes(val);
                 });
@@ -78,11 +87,13 @@ export class DashboardComponent implements OnInit {
     }
 
     deleteProduct(product: Product) {
+
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete ' + product.name + '?',
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
+                this.productService.Deletes(product.id);
                 this.products = this.products.filter(val => val.id !== product.id);
                 this.product = {} as Product;
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
@@ -95,7 +106,7 @@ export class DashboardComponent implements OnInit {
         this.submitted = false;
     }
 
-    saveProduct() {
+    saveProduct(product:Product) {
         this.submitted = true;
 
         if (this.product.name?.trim()) {
@@ -104,11 +115,11 @@ export class DashboardComponent implements OnInit {
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
             }
             else {
-                this.product.id = this.createId();
                 this.product.image = 'product-placeholder.svg';
                 this.products.push(this.product);
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
             }
+            this.productService.Saves(product);
 
             this.products = [...this.products];
             this.productDialog = false;
@@ -128,13 +139,6 @@ export class DashboardComponent implements OnInit {
         return index;
     }
 
-    createId(): number {
-        let id;
-        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        id= Math.random();
-        return id;
-    }
 
     // ngDoCheck(): void {
     //     // @ts-ignore

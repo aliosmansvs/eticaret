@@ -19,9 +19,10 @@ import {ShoppageModule} from "./eticaret/shop/shoppage.module";
 
 import {StoreModule} from "@ngrx/store";
 import {shopReducer} from "./eticaret/store/shop/shop.reducers";
-import {AuthGuard} from "./eticaret/shared/auth.guard";
-import {RoleGuard} from "./eticaret/shared/role.guard";
 import {SHOP_REDUCER} from "./eticaret/model/shop";
+import {AuthService} from "./eticaret/shared/auth.service";
+import {BasketService} from "./eticaret/service/basket.service";
+import {LoginService} from "./eticaret/service/login.service";
 
 
 
@@ -44,7 +45,7 @@ import {SHOP_REDUCER} from "./eticaret/model/shop";
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService,ConfirmationService,AuthGuard,RoleGuard
+        PhotoService, ProductService,ConfirmationService,AuthService,BasketService,LoginService
     ],
     bootstrap: [AppComponent]
 })

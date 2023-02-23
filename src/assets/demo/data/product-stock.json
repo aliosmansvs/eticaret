@@ -1,17 +1,8 @@
 {
     "data": [
+
         {
             "id": "1",
-            "name": "Bamboo Watch",
-            "description": "Product Description",
-            "image": "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__340.jpg",
-            "price": 65,
-            "category": "Accessories",
-            "quantity": 24,
-            "inventoryStatus": "INSTOCK"
-        },
-        {
-            "id": "2",
             "name": "Bamboo Watch",
             "description": "Product Description",
             "image": "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__340.jpg",
@@ -22,11 +13,11 @@
             "amount": 1
         },
         {
-            "id": "3",
+            "id": "2",
             "name": "Bamboo Watch",
             "description": "Product Description",
             "image": "https://cdn.britannica.com/77/170477-050-1C747EE3/Laptop-computer.jpg",
-            "price": 65,
+            "price": 80,
             "category": "Accessories",
             "quantity": 24,
             "inventoryStatus": "INSTOCK",
@@ -34,11 +25,11 @@
 
         },
         {
-            "id": "4",
+            "id": "3",
             "name": "Ali Osman",
             "description": "Product Description",
             "image": "https://cdn.pixabay.com/photo/2016/04/04/14/12/monitor-1307227__340.jpg",
-            "price": 65,
+            "price": 75,
             "category": "Accessories",
             "quantity": 24,
             "inventoryStatus": "INSTOCK",

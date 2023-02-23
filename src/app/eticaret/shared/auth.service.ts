@@ -10,5 +10,16 @@ export class AuthService {
     IsLoggedIn(){
       return !!localStorage.getItem("user");
     }
-
+    adminAuth(){
+      if (localStorage.getItem("userType")=="admin"){
+          return true;
+      }
+      return false;
+    }
+    userAuth(){
+        if (localStorage.getItem("userType")=="user"){
+            return true;
+        }
+        return false;
+    }
 }

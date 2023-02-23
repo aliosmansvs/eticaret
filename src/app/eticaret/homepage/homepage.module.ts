@@ -20,6 +20,7 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {PaginatorModule} from "primeng/paginator";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
+import {ProductService} from "../service/product.service";
 
 @NgModule({
     declarations:[HomepageComponent],
@@ -42,7 +43,8 @@ import {DialogModule} from "primeng/dialog";
         RadioButtonModule,
         PaginatorModule,
         ConfirmDialogModule,
-        DialogModule,
-    ]
+        DialogModule
+    ],
+
 })
 export class HomepageModule { }

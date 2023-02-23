@@ -11,6 +11,8 @@ import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {selectCurrentShop} from "../store/shop/shop.selectors";
 import {shopDecrement, shopIncrement} from "../store/shop/shop.action";
+import {BasketService} from "../service/basket.service";
+import {Basket} from "../model/basket";
 
 
 @Component({
@@ -23,11 +25,11 @@ import {shopDecrement, shopIncrement} from "../store/shop/shop.action";
 export class ShoppageComponent implements OnInit{
     productDialog!: boolean;
 
-    products!: Product[];
+    products: Product[]=[];
 
     product!: Product;
 
-    selectedProducts!: Product[];
+    selectedProducts!: Basket[];
 
     submitted!: boolean;
 
@@ -38,8 +40,15 @@ export class ShoppageComponent implements OnInit{
      amountCount!: Observable<number>;
 
     constructor(private productService: ProductService, private messageService: MessageService, private confirmationService: ConfirmationService,
-                private store:Store) {
+                private store:Store , private basketService:BasketService) {
+
         this.amountCount = store.select(selectCurrentShop);
+
+        this.basketService.findAllById(1).subscribe((response:Product[]) =>  this.products=response);
+
+
+
+
         // this.products.forEach(value => {
         //     console.log(value)
         //     this.totalPrice+=value.price*value.amount;
@@ -47,12 +56,8 @@ export class ShoppageComponent implements OnInit{
 
 
     }
-
-
     ngOnInit() {
 
-        // @ts-ignore
-        this.products=JSON.parse(localStorage.getItem("products"));
         this.products.forEach(value => {
             this.totalPrice+=value.price*value.amount;
         })
@@ -66,18 +71,14 @@ export class ShoppageComponent implements OnInit{
         ];
     }
 
-
-
     deleteProduct(product: Product) {
+        console.log(product);
         this.confirmationService.confirm({
             message: 'Silmek istediğinize emin misiniz ' + product.name + '?',
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                console.log(this.totalPrice);
-                this.products = this.products.filter(val => val.id !== product.id,
-                this.totalPrice-=product.price);
-                console.log(this.totalPrice);
+                this.basketService.deleteProduct(product.id);
                 for (let i = 0; i <product.amount ; i++) {
                     console.log(i)
                     this.store.dispatch(shopDecrement());
@@ -90,6 +91,13 @@ export class ShoppageComponent implements OnInit{
     }
 
 
+    addShop() {
+        console.log(this.selectedProducts);
+        this.selectedProducts.forEach((value)=>{
+            console.log("value",value);
+            this.basketService.saveBasket(value);
+        })
+    }
 }
 
 

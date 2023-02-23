@@ -5,9 +5,8 @@ export interface Product{
     category: string;
     description: string;
     image: string;
-    id?:number
-    name?:string
-    price:number
-    link?:string
+    id:number;
+    name:string;
+    price:number;
     amount:number;
 }
