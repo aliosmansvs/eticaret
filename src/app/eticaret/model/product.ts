@@ -1,7 +1,6 @@
 
 export interface Product{
     quantity: string;
-    inventoryStatus: string;
     category: string;
     description: string;
     image: string;
@@ -9,4 +8,5 @@ export interface Product{
     name:string;
     price:number;
     amount:number;
+    stock:number
 }

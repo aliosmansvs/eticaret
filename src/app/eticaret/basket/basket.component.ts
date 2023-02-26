@@ -17,12 +17,12 @@ import {Basket} from "../model/basket";
 
 @Component({
     selector: 'app-login',
-    templateUrl: './shoppage.component.html',
+    templateUrl: './basket.component.html',
     providers: [MessageService]
 
 })
 
-export class ShoppageComponent implements OnInit{
+export class BasketComponent implements OnInit{
     productDialog!: boolean;
 
     products: Product[]=[];

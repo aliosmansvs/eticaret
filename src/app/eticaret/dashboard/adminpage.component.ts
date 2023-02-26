@@ -12,7 +12,7 @@ import {ProductService} from "../service/product.service";
 
 @Component({
     selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
+    templateUrl: './adminpage.component.html',
     styles: [`
         :host ::ng-deep .p-dialog .product-image {
             width: 150px;
@@ -24,7 +24,7 @@ import {ProductService} from "../service/product.service";
 
 })
 
-export class DashboardComponent implements OnInit {
+export class AdminpageComponent implements OnInit {
     productDialog!: boolean;
 
     products: Product[]=[];
@@ -69,12 +69,13 @@ export class DashboardComponent implements OnInit {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-
+                this.productService.Deletes(product.id);
 
 
                 this.products = this.products.filter(val => {
                     return !this.selectedProducts.includes(val);
                 });
+                this.selectedProducts = this.products;
                 this.selectedProducts = {} as Product[];
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
             }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ShoppageComponent} from './shoppage.component';
+import { CommentComponent} from './comment.component';
 import {CommonModule} from "@angular/common";
-import {ShoppageRoutingModule} from "./shoppage-routing.module";
+import {CommentRoutingModule} from "./comment-routing.module";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {ChipsModule} from "primeng/chips";
@@ -21,12 +21,14 @@ import {PaginatorModule} from "primeng/paginator";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
 import {CheckboxModule} from "primeng/checkbox";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
-    declarations:[ShoppageComponent],
+    declarations:[CommentComponent],
     imports: [
         CommonModule,
-        ShoppageRoutingModule,
+        CommentRoutingModule,
         FormsModule,
         ButtonModule,
         ChipsModule,
@@ -45,6 +47,8 @@ import {CheckboxModule} from "primeng/checkbox";
         ConfirmDialogModule,
         DialogModule,
         CheckboxModule,
+        MatCardModule,
+        MatButtonModule,
     ]
 })
-export class ShoppageModule { }
+export class CommentModule { }

@@ -11,11 +11,11 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import {LoginModule} from "./eticaret/login/login.module";
-import {HomepageModule} from "./eticaret/homepage/homepage.module";
-import {DashboardModule} from "./eticaret/dashboard/dashboard.module";
+import {UserpageModule} from "./eticaret/homepage/userpage.module";
+import {AdminpageModule} from "./eticaret/dashboard/adminpage.module";
 import {ProductService} from "./eticaret/service/product.service";
 import {ConfirmationService} from "primeng/api";
-import {ShoppageModule} from "./eticaret/shop/shoppage.module";
+import {BasketModule} from "./eticaret/basket/basket.module";
 
 import {StoreModule} from "@ngrx/store";
 import {shopReducer} from "./eticaret/store/shop/shop.reducers";
@@ -34,9 +34,9 @@ import {LoginService} from "./eticaret/service/login.service";
         AppRoutingModule,
         AppLayoutModule,
         LoginModule,
-        HomepageModule,
-        DashboardModule,
-        ShoppageModule,
+        UserpageModule,
+        AdminpageModule,
+        BasketModule,
         StoreModule.forRoot({[SHOP_REDUCER]:shopReducer}),
 
         AsyncPipe

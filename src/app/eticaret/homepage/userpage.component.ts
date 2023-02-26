@@ -19,12 +19,12 @@ import {BasketService} from "../service/basket.service";
 
 @Component({
     selector: 'app-login',
-    templateUrl: './homepage.component.html',
+    templateUrl: './userpage.component.html',
     providers: [MessageService]
 
 })
 
-export class HomepageComponent implements OnInit {
+export class UserpageComponent implements OnInit {
     productDialog!: boolean;
 
     products!: Product[];

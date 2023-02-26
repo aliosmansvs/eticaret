@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HomepageComponent} from './homepage.component';
+import { UserpageComponent} from './userpage.component';
 import {CommonModule} from "@angular/common";
-import {HomepageRoutingModule} from "./homepage-routing.module";
+import {UserpageRoutingModule} from "./userpage-routing.module";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {ChipsModule} from "primeng/chips";
@@ -23,10 +23,10 @@ import {DialogModule} from "primeng/dialog";
 import {ProductService} from "../service/product.service";
 
 @NgModule({
-    declarations:[HomepageComponent],
+    declarations:[UserpageComponent],
     imports: [
         CommonModule,
-        HomepageRoutingModule,
+        UserpageRoutingModule,
         FormsModule,
         ButtonModule,
         ChipsModule,
@@ -47,4 +47,4 @@ import {ProductService} from "../service/product.service";
     ],
 
 })
-export class HomepageModule { }
+export class UserpageModule { }

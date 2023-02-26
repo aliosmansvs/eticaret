@@ -36,17 +36,15 @@
                 <th pSortableColumn="Description" style="min-width:10rem">Description
                     <p-sortIcon field="Description"></p-sortIcon>
                 </th>
-                <th pSortableColumn="inventoryStatus" style="min-width:10rem">Status
-                    <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                <th pSortableColumn="stock" style="min-width:10rem">Stock
+                    <p-sortIcon field="stock"></p-sortIcon>
                 </th>
                 <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
-                <td>
 
-                </td>
                 <td>{{product.name}}</td>
                 <td><img [src]="product.image" width="100" class="shadow-4"/></td>
                 <td>{{product.price | currency:'TR'}}</td>

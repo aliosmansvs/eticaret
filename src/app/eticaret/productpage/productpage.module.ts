@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DashboardComponent} from './dashboard.component';
+import { ProductpageComponent} from './productpage.component';
 import {CommonModule} from "@angular/common";
-import {DashboardRoutingModule} from "./dashboard-routing.module";
+import {ProductpageRoutingModule} from "./productpage-routing.module";
 import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {ChipsModule} from "primeng/chips";
@@ -12,23 +12,24 @@ import {DropdownModule} from "primeng/dropdown";
 import {FileUploadModule} from "primeng/fileupload";
 import {SliderModule} from "primeng/slider";
 import {DividerModule} from "primeng/divider";
-import {TabMenuModule} from "primeng/tabmenu";
-import {CardModule} from "primeng/card";
-import {PaginatorModule} from "primeng/paginator";
-import {RatingModule} from "primeng/rating";
 import {ToastModule} from "primeng/toast";
 import {ToolbarModule} from "primeng/toolbar";
 import {RippleModule} from "primeng/ripple";
-import {DialogModule} from "primeng/dialog";
-import {RadioButtonModule} from "primeng/radiobutton";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {PaginatorModule} from "primeng/paginator";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
+import {ProductService} from "../service/product.service";
+import {DataViewModule} from "primeng/dataview";
+import {RatingModule} from "primeng/rating";
+import {TreeTableModule} from "primeng/treetable";
 
 @NgModule({
-    declarations:[DashboardComponent],
+    declarations:[ProductpageComponent],
     imports: [
         CommonModule,
-        DashboardRoutingModule,
+        ProductpageRoutingModule,
         FormsModule,
         ButtonModule,
         ChipsModule,
@@ -38,17 +39,18 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         FileUploadModule,
         SliderModule,
         DividerModule,
-        TabMenuModule,
-        CardModule,
-        PaginatorModule,
-        RatingModule,
         ToastModule,
         ToolbarModule,
         RippleModule,
-        DialogModule,
-        RadioButtonModule,
         InputTextareaModule,
+        RadioButtonModule,
+        PaginatorModule,
         ConfirmDialogModule,
-    ]
+        DialogModule,
+        DataViewModule,
+        RatingModule,
+        TreeTableModule
+    ],
+
 })
-export class DashboardModule { }
+export class ProductpageModule { }
