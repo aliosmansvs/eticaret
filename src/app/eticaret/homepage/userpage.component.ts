@@ -116,7 +116,7 @@ export class UserpageComponent implements OnInit {
         let status: boolean = true;
 
         this.shopProducts.forEach(value => {
-            if (value.id == this.product.id) {
+            if (value.productId == this.product.productId) {
                 value.amount++;
                 status = false;
             }

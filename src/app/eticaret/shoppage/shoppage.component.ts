@@ -7,13 +7,12 @@ import {
 import {ConfirmationService, MessageService, SelectItem} from "primeng/api";
 import {Product} from "../model/product";
 import {ProductService} from "../service/product.service";
-import {Router} from "@angular/router";
-import {ShopState} from "../model/shop";
+import {ActivatedRoute, Router} from "@angular/router";
 import {createReducer, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import { selectCurrentShop} from "../store/shop/shop.selectors";
-import {shopDecrement, shopIncrement} from "../store/shop/shop.action";
 import {BasketService} from "../service/basket.service";
+import {Basket} from "../model/basket";
 
 
 
@@ -45,6 +44,7 @@ export class ShoppageComponent implements OnInit {
     sortOrder!: number;
     sortOptions!: SelectItem[];
     sortKey: any;
+    private selectedProducts!: Basket[];
 
     constructor(private productService: ProductService, private messageService: MessageService,
                 private confirmationService: ConfirmationService, private router: Router,
@@ -80,19 +80,16 @@ export class ShoppageComponent implements OnInit {
         }
     }
     routerShopping() {
-        this.router.navigate(["shoppage"]);
+        this.router.navigate(["basket"]);
 
     }
-
-
-
 
     shopControl(): boolean {
 
         let status: boolean = true;
 
         this.shopProducts.forEach(value => {
-            if (value.id == this.product.id) {
+            if (value.productId == this.product.productId) {
                 value.amount++;
                 status = false;
             }
@@ -101,12 +98,17 @@ export class ShoppageComponent implements OnInit {
         return status;
 
     }
-
-
-
-
-
-
+    GotoDetail(product: Product) {
+        console.log("lala",product.productId)
+        this.router.navigate(['find',product.productId])
+    }
+    addShop() {
+        console.log(this.selectedProducts);
+        this.selectedProducts.forEach((value)=>{
+            console.log("value",value);
+            this.basketServis.saveBasket(value);
+        })
+    }
 }
 
 

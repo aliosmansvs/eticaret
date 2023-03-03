@@ -7,8 +7,13 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+        <div class="align-items-center" style="float: right ">
+            <button pButton class="mr-4" icon="pi pi-fw pi-shopping-cart" (click)="addShop()"><label
+                class="ml-3">Buy</label></button>
+        </div>
         <tr>
             <td *ngFor="let col of columns; let i = index" ttEditableColumn [ngClass]="{'p-toggler-column': i === 0}">
+
                 <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0">
                     <label>Yanıtla</label>
                 </p-treeTableToggler>
@@ -33,7 +38,6 @@
                     </ng-template>
 
                 </p-treeTableCellEditor>
-
 
             </td>
         </tr>

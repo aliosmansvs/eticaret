@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommentComponent} from './comment.component';
+import {NgModule} from '@angular/core';
+import {CommentComponent} from './comment.component';
 import {CommonModule} from "@angular/common";
 import {CommentRoutingModule} from "./comment-routing.module";
 import {FormsModule} from "@angular/forms";
@@ -21,11 +20,12 @@ import {PaginatorModule} from "primeng/paginator";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DialogModule} from "primeng/dialog";
 import {CheckboxModule} from "primeng/checkbox";
-import {MatCardModule} from "@angular/material/card";
-import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
-    declarations:[CommentComponent],
+    declarations: [CommentComponent],
+    exports: [
+        CommentComponent
+    ],
     imports: [
         CommonModule,
         CommentRoutingModule,
@@ -47,8 +47,7 @@ import {MatButtonModule} from "@angular/material/button";
         ConfirmDialogModule,
         DialogModule,
         CheckboxModule,
-        MatCardModule,
-        MatButtonModule,
+
     ]
 })
 export class CommentModule { }

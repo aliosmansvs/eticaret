@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {AsyncPipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {AsyncPipe, HashLocationStrategy, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -43,7 +43,7 @@ import {LoginService} from "./eticaret/service/login.service";
 
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService,ConfirmationService,AuthService,BasketService,LoginService
     ],

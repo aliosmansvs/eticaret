@@ -11,8 +11,22 @@ export class CommentsService{
     constructor(private httpClient:HttpClient) {}
 
     getComments():Observable<Comment[]>{
-        return this.httpClient.get<Comment[]>(`${this.apiurl}product/getAll`);
+        return this.httpClient.get<Comment[]>(`${this.apiurl}comment/getAll`);
+    }
 
+    saves(comment:Comment) {
+        console.log(`${this.apiurl}comment/save`);
+        console.log(comment)
+        this.httpClient.post<any>(`${this.apiurl}comment/save`, comment).subscribe(data => {
+            console.log(data)
+        });
+    }
+
+    deleteComment(id:number){
+        console.log(id);
+        this.httpClient.delete<any>(`${this.apiurl}comment/delete/`+id).subscribe(data => {
+            console.log(data)
+        });
     }
 
 }

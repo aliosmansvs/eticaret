@@ -23,6 +23,8 @@ import {DialogModule} from "primeng/dialog";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {CheckboxModule} from "primeng/checkbox";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
     declarations:[AdminpageComponent],
@@ -49,6 +51,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         RadioButtonModule,
         InputTextareaModule,
         ConfirmDialogModule,
+        CheckboxModule,
+        MatBadgeModule,
     ]
 })
 export class AdminpageModule { }

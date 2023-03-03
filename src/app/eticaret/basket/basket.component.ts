@@ -78,7 +78,7 @@ export class BasketComponent implements OnInit{
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.basketService.deleteProduct(product.id);
+                this.basketService.deleteProduct(product.productId);
                 for (let i = 0; i <product.amount ; i++) {
                     console.log(i)
                     this.store.dispatch(shopDecrement());

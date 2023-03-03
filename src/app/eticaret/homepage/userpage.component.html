@@ -1,8 +1,6 @@
 <p-toast></p-toast>
 
 <div class="card">
-
-
     <p-table #dt [value]="products" [rows]="10" [paginator]="true"
              [globalFilterFields]="['name','country.name','representative.name','status']"
              [tableStyle]="{'min-width': '75rem'}"
@@ -22,6 +20,9 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
+                <th pSortableColumn="id" style="min-width:15rem">ID
+                    <p-sortIcon field="id"></p-sortIcon>
+                </th>
 
                 <th pSortableColumn="name" style="min-width:15rem">Name
                     <p-sortIcon field="name"></p-sortIcon>
@@ -44,9 +45,12 @@
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
+                <td>{{product.id}}</td>
 
                 <td>{{product.name}}</td>
-                <td><img [src]="product.image" width="100" class="shadow-4"/></td>
+                <td>
+                    <a [routerLink]="['/detail',product.id]">
+                    <img [src]="product.image" width="100" class="shadow-4"/></a></td>
                 <td>{{product.price | currency:'TR'}}</td>
                 <td>{{product.category}}</td>
                 <td>{{product.description}}</td>
@@ -88,15 +92,17 @@
         </div>
 
         <h1>{{test}}</h1>
-        <div class="formgrid grid">
-            <div class="field col">
-                <!--                <label for="amount">Amount</label>-->
-                <!--                <div style="width: 10%">-->
-                <!--                    <p-inputNumber id="amount" [(ngModel)]="productAmount" mode="decimal" [showButtons]="true"-->
-                <!--                                   buttonLayout="vertical" spinnerMode="vertical"-->
-                <!--                                   decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"-->
-                <!--                                   incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>-->
-                <!--                </div>-->
+        <div class="p-fluid grid ">
+            <div class="field col-12 md:col-3">
+                                <label for="amount">Amount</label>
+
+                                    <p-inputNumber id="amount" [(ngModel)]="productAmount" mode="decimal" [showButtons]="true"
+                                                   [min]="1"
+                                                   buttonLayout="vertical" spinnerMode="vertical"
+                                                   decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
+                                                   incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+                                    </p-inputNumber>
+
             </div>
         </div>
 

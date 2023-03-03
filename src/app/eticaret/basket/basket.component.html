@@ -11,7 +11,7 @@
             <div class="flex align-items-center justify-content-between">
                 <h5 class="m-3">Shop Page</h5>
                 <div class="align-items-center" style="float: right ">
-                    <button pButton class="mr-4" icon="pi pi-fw pi-shopping-cart" (click)="addShop()" ><label
+                    <button pButton class="mr-4" icon="pi pi-fw pi-shopping-cart" (click)="addShop()"><label
                         class="ml-3">Buy</label></button>
                 </div>
             </div>
@@ -21,14 +21,14 @@
             <tr>
                 <th>
                 </th>
-                <th pSortableColumn="name"  >Name
+                <th pSortableColumn="name">Name
                     <p-sortIcon field="name"></p-sortIcon>
                 </th>
                 <th>Image</th>
                 <th pSortableColumn="price">Price
                     <p-sortIcon field="price"></p-sortIcon>
                 </th>
-                <th pSortableColumn="amount" >Amount
+                <th pSortableColumn="amount">Amount
                     <p-sortIcon field="amount"></p-sortIcon>
                 </th>
                 <th></th>
@@ -37,18 +37,28 @@
         <ng-template pTemplate="body" let-products>
             <tr>
                 <td>
-                    <p-checkbox [value]="products" [(ngModel)]="selectedProducts" ></p-checkbox>
+                    <p-checkbox [value]="products" [(ngModel)]="selectedProducts"></p-checkbox>
                 </td>
 
                 <td>{{products.product.name}}</td>
                 <td><img [src]="products.product.image" width="100" class="shadow-4"/></td>
                 <td>{{products.product.price | currency:'USD'}}</td>
-                <div>
-                    <p-inputNumber id="amount" [(ngModel)]="products.product.amount" mode="decimal" [showButtons]="true"
-                                   buttonLayout="vertical" spinnerMode="vertical"
-                                   decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary"
-                                   incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
-                                   [min]="1" [max]="10" ></p-inputNumber>
+
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <div class="field col-12 md:col-3">
+
+                            <p-inputNumber id="amount" [(ngModel)]="products.product.amount" mode="decimal"
+                                           [showButtons]="true"
+                                           buttonLayout="vertical" spinnerMode="vertical"
+                                           decrementButtonClass="p-button-secondary"
+                                           incrementButtonClass="p-button-secondary"
+                                           incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+                                           [min]="1" [max]="products.product.stock">
+
+                            </p-inputNumber>
+                        </div>
+                    </div>
                 </div>
 
                 <td>

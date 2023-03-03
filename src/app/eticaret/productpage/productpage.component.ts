@@ -52,4 +52,8 @@ export class ProductpageComponent   {
     hideDialog() {
         this.productDialog=false;
     }
+
+    addShop() {
+
+    }
 }

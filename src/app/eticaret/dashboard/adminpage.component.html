@@ -3,6 +3,7 @@
 <div class="card">
     <p-toolbar styleClass="mb-4 gap-2">
         <ng-template pTemplate="left">
+
             <button pButton pRipple label="Add" icon="pi pi-plus" class="p-button-success mr-2"
                     (click)="addNew()"></button>
 
@@ -29,14 +30,14 @@
                 <h5 class="m-0">Admin Product Page</h5>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" placeholder="Search..."/>
+<!--                    <input pInputText type="text" (input)="onSearchChange($event)" [(ngModel)]="serarchValue" placeholder="Search..." />-->
                 </span>
             </div>
         </ng-template>
-        <ng-template pTemplate="header">
+        <ng-template pTemplate="header" let-products>
             <tr>
-                <th style="width: 4rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                <th style="width: 4rem" >
+                    <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
                 </th>
                 <th pSortableColumn="name" style="min-width:15rem">Name
                     <p-sortIcon field="name"></p-sortIcon>
@@ -51,20 +52,25 @@
                 <th pSortableColumn="Description" style="min-width:10rem">Description
                     <p-sortIcon field="Description"></p-sortIcon>
                 </th>
+                <th pSortableColumn="Stock" style="min-width:10rem">Stock
+                    <p-sortIcon field="Stock"></p-sortIcon>
+                </th>
 
+                <th></th>
 
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
-            <tr>
+            <tr class="p-selectable-row">
                 <td>
-                    <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    <p-checkbox name="checkname" [value]="product" [(ngModel)]="selectedProducts"></p-checkbox>
                 </td>
                 <td>{{product.name}}</td>
                 <td><img [src]="product.image" width="100" class="shadow-4"/></td>
                 <td>{{product.price | currency:'TR'}}</td>
-                <td>{{product.category}}</td>
+                <td>{{product.categories}}</td>
                 <td>{{product.description}}</td>
+                <td>{{product.stock}}</td>
 
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
@@ -85,7 +91,7 @@
 <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
           styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.image"
+        <img [src]=" product.image" [alt]="product.image"
              class="product-image" *ngIf="product.image">
         <div class="field">
             <label for="name">Name</label>
@@ -106,7 +112,9 @@
             <label for="stock">Stock</label>
             <input type="text" pInputText id="stock" [(ngModel)]="product.stock" required autofocus/>
             <small class="p-error" *ngIf="submitted && !product.stock">Stock is required.</small>
+
         </div>
+
 
 
 
@@ -115,22 +123,22 @@
             <div class="formgrid grid">
                 <div class="field-radiobutton col-6">
                     <p-radioButton id="category1" name="category" value="Accessories"
-                                   [(ngModel)]="product.category"></p-radioButton>
+                                   [(ngModel)]="product.categories"></p-radioButton>
                     <label for="category1">Accessories</label>
                 </div>
                 <div class="field-radiobutton col-6">
                     <p-radioButton id="category2" name="category" value="Clothing"
-                                   [(ngModel)]="product.category"></p-radioButton>
+                                   [(ngModel)]="product.categories"></p-radioButton>
                     <label for="category2">Clothing</label>
                 </div>
                 <div class="field-radiobutton col-6">
                     <p-radioButton id="category3" name="category" value="Electronics"
-                                   [(ngModel)]="product.category"></p-radioButton>
+                                   [(ngModel)]="product.categories"></p-radioButton>
                     <label for="category3">Electronics</label>
                 </div>
                 <div class="field-radiobutton col-6">
                     <p-radioButton id="category4" name="category" value="Fitness"
-                                   [(ngModel)]="product.category"></p-radioButton>
+                                   [(ngModel)]="product.categories"></p-radioButton>
                     <label for="category4">Fitness</label>
                 </div>
             </div>

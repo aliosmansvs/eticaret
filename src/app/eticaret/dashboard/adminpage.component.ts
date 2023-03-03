@@ -1,5 +1,5 @@
 import {
-    Component, DoCheck, OnChanges,
+    Component, DoCheck, EventEmitter, OnChanges,
     OnInit, Output,
     SimpleChanges
 } from '@angular/core';
@@ -31,9 +31,17 @@ export class AdminpageComponent implements OnInit {
 
     product!: Product;
 
-    selectedProducts!: Product[];
+    selectedProducts: Product[]=[];
 
     submitted!: boolean;
+
+    // serarchValue:string='';
+    // @Output() searchTextChange:EventEmitter<string> = new EventEmitter<string>();
+    //
+    // onSearchChange($event: Event){
+    //     this.searchTextChange.emit(this.serarchValue);
+    // }
+
 
     statuses!: [{ label: string; value: string }, { label: string; value: string }, { label: string; value: string }];
 
@@ -44,8 +52,6 @@ export class AdminpageComponent implements OnInit {
     }
 
     ngOnInit() {
-
-
 
         this.statuses = [
             {label: 'INSTOCK', value: 'instock'},
@@ -69,11 +75,11 @@ export class AdminpageComponent implements OnInit {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.productService.Deletes(product.id);
-
+                this.productService.Deletes(product.productId);
 
                 this.products = this.products.filter(val => {
-                    return !this.selectedProducts.includes(val);
+                    !this.selectedProducts.includes(val);
+
                 });
                 this.selectedProducts = this.products;
                 this.selectedProducts = {} as Product[];
@@ -94,8 +100,8 @@ export class AdminpageComponent implements OnInit {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.productService.Deletes(product.id);
-                this.products = this.products.filter(val => val.id !== product.id);
+                this.productService.Deletes(product.productId);
+                this.products = this.products.filter(val => val.productId !== product.productId);
                 this.product = {} as Product;
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
             }
@@ -109,18 +115,21 @@ export class AdminpageComponent implements OnInit {
 
     saveProduct(product:Product) {
         this.submitted = true;
+        console.log(product)
+
 
         if (this.product.name?.trim()) {
-            if (this.product.id) {
-                this.products[this.findIndexById(this.product.id)] = this.product;
+            if (this.product.productId) {
+                this.products[this.findIndexById(this.product.productId)] = this.product;
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
             }
             else {
-                this.product.image = 'product-placeholder.svg';
+
                 this.products.push(this.product);
                 this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
             }
             this.productService.Saves(product);
+
 
             this.products = [...this.products];
             this.productDialog = false;
@@ -131,7 +140,7 @@ export class AdminpageComponent implements OnInit {
     findIndexById(id: number): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+            if (this.products[i].productId=== id) {
                 index = i;
                 break;
             }

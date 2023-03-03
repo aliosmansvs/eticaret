@@ -13,7 +13,11 @@ import {AppComponent} from "./app.component";
                     { path: 'adminpage' ,loadChildren: () => import('./eticaret/dashboard/adminpage.module').then(m => m.AdminpageModule) },
                     { path: 'basket', loadChildren: () => import('./eticaret/basket/basket.module').then(m => m.BasketModule) },
                     { path: 'shoppage', loadChildren: () => import('./eticaret/shoppage/shoppage.module').then(m => m.ShoppageModule) },
-                    { path: 'comment', loadChildren: () => import('./eticaret/comment/comment.module').then(m => m.CommentModule) }
+                    { path: 'comment', loadChildren: () => import('./eticaret/comment/comment.module').then(m => m.CommentModule) },
+                    { path: 'find/:id', loadChildren: () => import('./eticaret/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
+                    {path:'',redirectTo:'shoppage',pathMatch:'full'}
+
+
                 ]
             },
 

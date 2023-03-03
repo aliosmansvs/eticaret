@@ -1,8 +1,11 @@
+import {Product} from "./product";
+import {User} from "./user";
+
 export interface Comment{
    id:number
-    body:string
-    userName:string
-    userId:number
+    product:string
+    user:string
     parentId:number|null
-    createdAt:string
+    textYorum :string
+
 }
